@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cardiovascular Disease Predictor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8f0fe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h2 {
+      color: #1e88e5;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #1e88e5;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #1565c0;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #f1f8e9;
+      border-left: 5px solid green;
+      color: green;
+    }
+
+    .result.high-risk {
+      background-color: #ffebee;
+      border-left: 5px solid red;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Cardiovascular Risk Predictor</h2>
+
+  <form action="/predict" method="POST">
+    <label>Age</label>
+    <input type="number" name="age" required>
+
+    <label>Height (cm)</label>
+    <input type="number" name="height" required>
+
+    <label>Weight (kg)</label>
+    <input type="number" name="weight" required>
+
+    <label>Systolic BP</label>
+    <input type="number" name="ap_hi" required>
+
+    <label>Diastolic BP</label>
+    <input type="number" name="ap_lo" required>
+
+    <label>Cholesterol (1: Normal, 2: Above Normal, 3: Well Above)</label>
+    <input type="number" name="cholesterol" min="1" max="3" required>
+
+    <label>Glucose (1: Normal, 2: Above Normal, 3: Well Above)</label>
+    <input type="number" name="gluc" min="1" max="3" required>
+
+    <label>Smoke (0: No, 1: Yes)</label>
+    <input type="number" name="smoke" min="0" max="1" required>
+
+    <label>Alcohol (0: No, 1: Yes)</label>
+    <input type="number" name="alco" min="0" max="1" required>
+
+    <label>Active (0: No, 1: Yes)</label>
+    <input type="number" name="active" min="0" max="1" required>
+
+    <input type="submit" value="Predict">
+  </form>
+
+  {% if prediction %}
+    <div class="result {% if 'High' in prediction %}high-risk{% endif %}">
+      🔎 Prediction Result: {{ prediction }}
+    </div>
+  {% endif %}
+
+</body>
+</html>

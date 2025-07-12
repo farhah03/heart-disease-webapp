@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cardiovascular Disease Predictor</title>
+</head>
+<body>
+  <h2>Enter Your Health Info</h2>
+  <form action="/predict" method="POST">
+    Age: <input type="text" name="age"><br><br>
+    Height: <input type="text" name="height"><br><br>
+    Weight: <input type="text" name="weight"><br><br>
+    Systolic BP: <input type="text" name="ap_hi"><br><br>
+    Diastolic BP: <input type="text" name="ap_lo"><br><br>
+    Cholesterol: <input type="text" name="cholesterol"><br><br>
+    Glucose: <input type="text" name="gluc"><br><br>
+    Smoke (0/1): <input type="text" name="smoke"><br><br>
+    Alcohol (0/1): <input type="text" name="alco"><br><br>
+    Active (0/1): <input type="text" name="active"><br><br>
+    <input type="submit" value="Predict">
+  </form>
+
+  {% if prediction %}
+    <h3>Prediction: {{ prediction }}</h3>
+  {% endif %}
+</body>
+</html>
