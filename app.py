@@ -41,23 +41,5 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
-from flask import Flask, render_template, request
-import joblib
-import numpy as np
 
-app = Flask(__name__)
-
-model = joblib.load('cardio_model.pkl')
-
-@app.route('/')
-def home():
-    return render_template('index.html')  # Must match your file name
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    # (Form processing code here...)
-    return render_template('index.html', prediction=result)
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
